@@ -6,6 +6,7 @@ import Home from "./pages/home";
 import GradConnection from "./pages/gradconnection";
 import store from "store";
 import observe from "store/plugins/observe";
+import GradAustralia from "./pages/gradAustralia";
 
 function App() {
   useEffect(() => {
@@ -18,6 +19,9 @@ function App() {
           <Switch>
             <Route path="/gradconnection">
               <GradConnection />
+            </Route>
+            <Route path="/gradaustralia">
+              <GradAustralia />
             </Route>
             <Route path="/">
               <Home />

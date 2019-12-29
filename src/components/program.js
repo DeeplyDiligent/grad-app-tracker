@@ -57,7 +57,7 @@ const Program = ({ program }) => {
           }}
         />
       </div>
-      <a href={`https://au.gradconnection.com/employers/${program.employerslug}/jobs/${program.slug}/`}className="flex-grow">
+      <a href={program.applyUrl||`https://au.gradconnection.com/employers/${program.employerslug}/jobs/${program.slug}/`}className="flex-grow">
         <div>{program.companyName}</div>
         <div>
           {program.title}
@@ -66,7 +66,7 @@ const Program = ({ program }) => {
         <div>
           <Moment fromNow>{new Date(program.interval.start)}</Moment>
         </div>
-        <div>
+        <div className="flex flex-wrap">
           {program.locations.map(location=><span className="mr-2" key={location}>{location}</span>)}
         </div>
         <span>

@@ -4,7 +4,8 @@ const Home = () => {
   return (
     <div className="text-center">
       <div>Select the website:</div>
-      <Link to="/gradconnection">Gradconnection</Link>
+      <Link to="/gradconnection">Gradconnection</Link><br/>
+      <Link to="/gradaustralia">GradAustralia</Link>
     </div>
   );
 };
