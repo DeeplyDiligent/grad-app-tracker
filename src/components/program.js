@@ -9,18 +9,25 @@ import { gradConnectionKey } from "../utils/keys";
 const Program = ({ program }) => {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
   const [color, setColor] = useState("#ffffff00");
+  let observer = null;
 
   useEffect(() => {
-    store.observe(`${gradConnectionKey}.${program.id}.color`, color => {
-      setColor(color?color.hex:"#ffffff00");
-    });
+    observer = store.observe(
+      `${gradConnectionKey}.${program.id}.color`,
+      color => {
+        setColor(color ? color.hex : "#ffffff00");
+      }
+    );
+    return () => {
+      store.unobserve(observer);
+    };
   }, []);
 
-  const storeColor = (color) => {
+  const storeColor = color => {
     store.set(`${gradConnectionKey}.${program.id}.color`, color);
-  }
+  };
 
-  const saveChecked = (newState) => {
+  const saveChecked = newState => {
     store.set(`${gradConnectionKey}.${program.id}.ticked`, newState);
   };
   const getChecked = () =>
@@ -39,10 +46,10 @@ const Program = ({ program }) => {
     left: "0px"
   };
   return (
-    <div className="flex flex-row p-4" style={{background:color}}>
+    <div className="flex flex-row p-4" style={{ background: color }}>
       <div>
         <input
-          className="mr-2 w-6 h-6 mt-2"
+          className="mr-2 w-6 h-6 mt-1"
           type="checkbox"
           defaultChecked={getChecked()}
           onChange={e => {
@@ -56,7 +63,12 @@ const Program = ({ program }) => {
           {program.title}
         </a>
         <br />
-        <Moment fromNow>{new Date(program.interval.start)}</Moment>
+        <div>
+          <Moment fromNow>{new Date(program.interval.start)}</Moment>
+        </div>
+        <span>
+          Finishes: <Moment fromNow>{new Date(program.interval.end)}</Moment>
+        </span>
       </div>
       <div>
         <div
@@ -70,8 +82,8 @@ const Program = ({ program }) => {
               <div style={cover} onClick={() => setDisplayColorPicker(false)} />
               <div style={popover}>
                 <GithubPicker
-                  color= {color}
-                  onChangeComplete={ storeColor } 
+                  color={color}
+                  onChangeComplete={storeColor}
                   colors={["#ffffff00", "#fed7d7", "#fefcbf", "#c6f6d5"]}
                   width="auto"
                 />
