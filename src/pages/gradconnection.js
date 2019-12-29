@@ -1,7 +1,11 @@
 import React, { Component, useState, useEffect } from "react";
-import Store from "store";
+import store from "store";
 import Moment from "react-moment";
 import { gradConnectionKey } from "../utils/keys";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisH, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import { SketchPicker, GithubPicker } from "react-color";
+import Program from "../components/program";
 const GradConnection = () => {
   const [listPrograms, setListPrograms] = useState([]);
   const [degreeName, setDegreeName] = useState("computer-science");
@@ -24,10 +28,6 @@ const GradConnection = () => {
         data.map((employer, index) => {
           employer.campaigns.forEach((campaign, index) => {
             campaign["employerslug"] = employer.customer_organization.slug;
-            campaign["done"] = Store.get(
-              `${gradConnectionKey}.${campaign["id"]}`,
-              false
-            );
           });
           newListPrograms.push(...employer.campaigns);
         });
@@ -35,13 +35,11 @@ const GradConnection = () => {
       });
   }, [degreeName]);
 
-  const saveChecked = (id, newState) => {
-    Store.set(`${gradConnectionKey}.${id}`, newState);
-  };
-
   return (
     <div className="text-center">
-      <div className="capitalize">Grad Connection - {degreeName.replace("-", " ")} Grad Programs</div>
+      <div className="capitalize">
+        Grad Connection - {degreeName.replace("-", " ")} Grad Programs
+      </div>
       <div className="flex flex-row justify-center text-sm mt-4">
         {allDegrees
           .filter(degree => degreeName != degree)
@@ -61,30 +59,19 @@ const GradConnection = () => {
           ))}
       </div>
       <div
-        className="border rounded-lg mt-4 text-sm text-left p-4	"
+        className="border rounded-lg mt-4 text-sm text-left m-auto	"
         style={{ width: 700, height: 500, overflow: "auto" }}>
         {listPrograms.map(program => (
-          <div key={program.id} className="flex flex-row">
-            <div>
-              <input
-                className="mr-2 w-6 h-6 mt-2"
-                type="checkbox"
-                defaultChecked={program.done}
-                onChange={e => {
-                  saveChecked(program.id, e.target.value);
-                }}
-              />
-            </div>
-            <div>
-              <a
-                href={`https://au.gradconnection.com/employers/${program.employerslug}/jobs/${program.slug}/`}>
-                {program.title}
-              </a>
-              <br />
-              <Moment fromNow>{new Date(program.interval.start)}</Moment>
-            </div>
-          </div>
+          <Program key={program.id} program={program} />
         ))}
+      </div>
+      <div
+        className="mt-4 underline cursor-pointer"
+        onClick={() => {
+          store.clearAll();
+          window.location.reload();
+        }}>
+        Clear
       </div>
     </div>
   );

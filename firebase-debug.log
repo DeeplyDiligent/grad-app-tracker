@@ -1,0 +1,64 @@
+[debug] [2019-12-29T02:41:50.466Z] ----------------------------------------------------------------------
+[debug] [2019-12-29T02:41:50.468Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2019-12-29T02:41:50.468Z] CLI Version:   7.9.0
+[debug] [2019-12-29T02:41:50.468Z] Platform:      darwin
+[debug] [2019-12-29T02:41:50.468Z] Node Version:  v10.16.0
+[debug] [2019-12-29T02:41:50.469Z] Time:          Sun Dec 29 2019 13:41:50 GMT+1100 (Australian Eastern Daylight Time)
+[debug] [2019-12-29T02:41:50.469Z] ----------------------------------------------------------------------
+[debug] [2019-12-29T02:41:50.469Z] 
+[debug] [2019-12-29T02:41:50.485Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-12-29T02:41:50.485Z] > authorizing via signed-in user
+[debug] [2019-12-29T02:41:50.485Z] [iam] checking project grad-app-f3513 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-12-29T02:41:50.487Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-12-29T02:41:50.488Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-12-29T02:41:50.801Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-29T02:41:50.811Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/grad-app-f3513:testIamPermissions  
+
+[debug] [2019-12-29T02:41:51.379Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-29T02:41:51.382Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/grad-app-f3513  
+ 
+[debug] [2019-12-29T02:41:52.195Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'grad-app-f3513'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-12-29T02:41:52.200Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/grad-app-f3513/versions  
+
+[debug] [2019-12-29T02:41:54.448Z] <<< HTTP RESPONSE 200
+[info] i  hosting[grad-app-f3513]: beginning deploy...
+[info] i  hosting[grad-app-f3513]: found 19 files in build
+[debug] [2019-12-29T02:41:54.471Z] [hosting] hash cache [YnVpbGQ] stored for 19 files
+[debug] [2019-12-29T02:41:54.471Z] [hosting][hash queue][FINAL]
+[debug] [2019-12-29T02:41:54.471Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/grad-app-f3513/versions/6c26655343c460b6:populateFiles  
+ <request body omitted>
+[debug] [2019-12-29T02:41:56.596Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-29T02:41:56.597Z] [hosting][populate queue][FINAL]
+[debug] [2019-12-29T02:41:56.598Z] [hosting] uploads queued: 0
+[debug] [2019-12-29T02:41:56.598Z] [hosting][upload queue][FINAL]
+[info] ✔  hosting[grad-app-f3513]: file upload complete
+[debug] [2019-12-29T02:41:56.599Z] [hosting] deploy completed after 2149ms
+[debug] [2019-12-29T02:41:56.852Z] [
+  {
+    "config": {
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "grad-app-f3513"
+    },
+    "site": "grad-app-f3513",
+    "version": "sites/grad-app-f3513/versions/6c26655343c460b6"
+  }
+]
+[info] i  hosting[grad-app-f3513]: finalizing version...
+[debug] [2019-12-29T02:41:56.853Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/grad-app-f3513/versions/6c26655343c460b6?updateMask=status  
+
