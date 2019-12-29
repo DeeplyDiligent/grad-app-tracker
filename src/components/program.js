@@ -7,7 +7,7 @@ import Moment from "react-moment";
 import { gradConnectionKey } from "../utils/keys";
 
 const Program = ({ program }) => {
-  const [displayColorPicker, setDisplayColorPicker] = useState(false);
+  const [displayColorPicker, setDisplayColorPicker] = useState(true);
   const [color, setColor] = useState("#ffffff00");
   let observer = null;
 
@@ -34,9 +34,9 @@ const Program = ({ program }) => {
     store.get(`${gradConnectionKey}.${program.id}.ticked`, false);
 
   const popover = {
-    position: "absolute",
+    position: "relative",
     zIndex: "2",
-    transform: "translate(-16px)"
+    // transform: "translate(-16px)"
   };
   const cover = {
     position: "fixed",
@@ -73,15 +73,17 @@ const Program = ({ program }) => {
       <div>
         <div
           onClick={() => {
-            setDisplayColorPicker(!displayColorPicker);
+            setDisplayColorPicker(true);
+            // setDisplayColorPicker(!displayColorPicker);
           }}
           className="px-2 cursor-pointer">
-          <FontAwesomeIcon icon={faEllipsisV} />
+          {/* <FontAwesomeIcon icon={faEllipsisV} /> */}
           {displayColorPicker ? (
             <div>
-              <div style={cover} onClick={() => setDisplayColorPicker(false)} />
+              {/* <div style={cover} onClick={() => setDisplayColorPicker(true)} /> */}
               <div style={popover}>
                 <GithubPicker
+                triangle={"hide"}
                   color={color}
                   onChangeComplete={storeColor}
                   colors={["#ffffff00", "#fed7d7", "#fefcbf", "#c6f6d5"]}
