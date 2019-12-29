@@ -35,7 +35,7 @@ const Program = ({ program }) => {
 
   const popover = {
     position: "relative",
-    zIndex: "2",
+    zIndex: "2"
     // transform: "translate(-16px)"
   };
   const cover = {
@@ -57,20 +57,23 @@ const Program = ({ program }) => {
           }}
         />
       </div>
-      <div className="flex-grow">
-        <a
-          href={`https://au.gradconnection.com/employers/${program.employerslug}/jobs/${program.slug}/`}>
+      <a href={`https://au.gradconnection.com/employers/${program.employerslug}/jobs/${program.slug}/`}className="flex-grow">
+        <div>{program.companyName}</div>
+        <div>
           {program.title}
-        </a>
-        <br />
+        </div>
+
         <div>
           <Moment fromNow>{new Date(program.interval.start)}</Moment>
+        </div>
+        <div>
+          {program.locations.map(location=><span className="mr-2" key={location}>{location}</span>)}
         </div>
         <span>
           Finishes: <Moment fromNow>{new Date(program.interval.end)}</Moment>
         </span>
-      </div>
-      <div>
+      </a>
+      <div className="flex-shrink-0">
         <div
           onClick={() => {
             setDisplayColorPicker(true);
@@ -83,7 +86,7 @@ const Program = ({ program }) => {
               {/* <div style={cover} onClick={() => setDisplayColorPicker(true)} /> */}
               <div style={popover}>
                 <GithubPicker
-                triangle={"hide"}
+                  triangle={"hide"}
                   color={color}
                   onChangeComplete={storeColor}
                   colors={["#ffffff00", "#fed7d7", "#fefcbf", "#c6f6d5"]}

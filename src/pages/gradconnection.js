@@ -18,7 +18,7 @@ const GradConnection = () => {
   ];
   useEffect(() => {
     let gradConnectPrograms = fetch(
-      `https://cors-anywhere.herokuapp.com/https://au.gradconnection.com/api/campaigngroups/?job_type=graduate-jobs&disciplines=${degreeName}&location=melbourne%2CAU&offset=0&limit=100&ordering=-recent_job_created`
+      `https://cors-anywhere.herokuapp.com/https://au.gradconnection.com/api/campaigngroups/?job_type=graduate-jobs&disciplines=${degreeName}&offset=0&limit=100&ordering=-recent_job_created`
     );
     setListPrograms([]);
     let newListPrograms = [];
@@ -28,6 +28,7 @@ const GradConnection = () => {
         data.map((employer, index) => {
           employer.campaigns.forEach((campaign, index) => {
             campaign["employerslug"] = employer.customer_organization.slug;
+            campaign["companyName"] = employer.customer_organization.name;
           });
           newListPrograms.push(...employer.campaigns);
         });
