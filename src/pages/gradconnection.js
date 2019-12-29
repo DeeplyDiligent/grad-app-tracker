@@ -60,8 +60,7 @@ const GradConnection = () => {
           ))}
       </div>
       <div
-        className="border rounded-lg mt-4 text-sm text-left m-auto	"
-        style={{ width: 700, height: 500, overflow: "auto" }}>
+        className="border rounded-lg mt-4 text-sm text-left m-auto main-container">
         {listPrograms.map(program => (
           <Program key={program.id} program={program} />
         ))}
