@@ -68,8 +68,10 @@ const GradConnection = () => {
       <div
         className="mt-4 underline cursor-pointer"
         onClick={() => {
-          store.clearAll();
-          window.location.reload();
+          if (window.confirm("Are you sure?")) {
+            store.clearAll();
+            window.location.reload();
+          }
         }}>
         Clear
       </div>
