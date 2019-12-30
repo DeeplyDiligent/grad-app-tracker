@@ -1,3 +1,4 @@
 const gradConnectionKey = "gradConnectionStore";
+const gradAustraliaKey = "gradAustraliaStore";
 
-export { gradConnectionKey };
+export { gradConnectionKey, gradAustraliaKey };

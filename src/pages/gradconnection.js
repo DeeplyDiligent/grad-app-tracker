@@ -62,7 +62,7 @@ const GradConnection = () => {
       <div
         className="border rounded-lg mt-4 text-sm text-left m-auto main-container">
         {listPrograms.map(program => (
-          <Program key={program.id} program={program} />
+          <Program dbKey={gradConnectionKey} key={program.id} program={program} />
         ))}
       </div>
       <div

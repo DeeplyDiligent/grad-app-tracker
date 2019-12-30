@@ -4,16 +4,15 @@ import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import { GithubPicker } from "react-color";
 import store from "store";
 import Moment from "react-moment";
-import { gradConnectionKey } from "../utils/keys";
 
-const Program = ({ program }) => {
+const Program = ({ program, dbKey }) => {
   const [displayColorPicker, setDisplayColorPicker] = useState(true);
   const [color, setColor] = useState("#ffffff00");
   let observer = null;
 
   useEffect(() => {
     observer = store.observe(
-      `${gradConnectionKey}.${program.id}.color`,
+      `${dbKey}.${program.id}.color`,
       color => {
         setColor(color ? color.hex : "#ffffff00");
       }
@@ -24,14 +23,14 @@ const Program = ({ program }) => {
   }, []);
 
   const storeColor = color => {
-    store.set(`${gradConnectionKey}.${program.id}.color`, color);
+    store.set(`${dbKey}.${program.id}.color`, color);
   };
 
   const saveChecked = newState => {
-    store.set(`${gradConnectionKey}.${program.id}.ticked`, newState);
+    store.set(`${dbKey}.${program.id}.ticked`, newState);
   };
   const getChecked = () =>
-    store.get(`${gradConnectionKey}.${program.id}.ticked`, false);
+    store.get(`${dbKey}.${program.id}.ticked`, false);
 
   const popover = {
     position: "relative",

@@ -38,6 +38,6 @@
 
 .main-container {
   width: 700px;
-  height: 850px;
+  height: 70vh;
   overflow: auto;
 }

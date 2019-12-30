@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import store from "store";
 import Moment from "react-moment";
-import { gradConnectionKey } from "../utils/keys";
+import { gradAustraliaKey } from "../utils/keys";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import { SketchPicker, GithubPicker } from "react-color";
@@ -109,7 +109,7 @@ const GradAustralia = () => {
         className="border rounded-lg mt-4 text-sm text-left m-auto main-container">
           {noPrograms}
         {listPrograms.map(program => (
-          <Program key={program.id} program={program} />
+          <Program key={program.id} dbKey={gradAustraliaKey} program={program} />
         ))}
       </div>
       <div
