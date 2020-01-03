@@ -1,4 +1,5 @@
 const gradConnectionKey = "gradConnectionStore";
 const gradAustraliaKey = "gradAustraliaStore";
+const getHigheredKey = "getHigheredStore";
 
-export { gradConnectionKey, gradAustraliaKey };
+export { gradConnectionKey, gradAustraliaKey, getHigheredKey };

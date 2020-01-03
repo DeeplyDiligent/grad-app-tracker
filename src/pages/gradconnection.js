@@ -8,6 +8,7 @@ import { SketchPicker, GithubPicker } from "react-color";
 import Program from "../components/program";
 const GradConnection = () => {
   const [listPrograms, setListPrograms] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [degreeName, setDegreeName] = useState("computer-science");
   const allDegrees = [
     "computer-science",
@@ -21,6 +22,7 @@ const GradConnection = () => {
       `https://cors-anywhere.herokuapp.com/https://au.gradconnection.com/api/campaigngroups/?job_type=graduate-jobs&disciplines=${degreeName}&offset=0&limit=100&ordering=-recent_job_created`
     );
     setListPrograms([]);
+    setLoading(true)
     let newListPrograms = [];
     gradConnectPrograms
       .then(x => x.json())
@@ -33,6 +35,7 @@ const GradConnection = () => {
           newListPrograms.push(...employer.campaigns);
         });
         setListPrograms(newListPrograms);
+        setLoading(false);
       });
   }, [degreeName]);
 
@@ -61,6 +64,11 @@ const GradConnection = () => {
       </div>
       <div
         className="border rounded-lg mt-4 text-sm text-left m-auto main-container">
+        {loading ? (
+          <img className="m-auto block w-32" src="load.svg"></img>
+        ) : (
+          false
+        )}
         {listPrograms.map(program => (
           <Program dbKey={gradConnectionKey} key={program.id} program={program} />
         ))}

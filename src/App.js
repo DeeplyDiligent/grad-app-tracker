@@ -7,6 +7,7 @@ import GradConnection from "./pages/gradconnection";
 import store from "store";
 import observe from "store/plugins/observe";
 import GradAustralia from "./pages/gradAustralia";
+import GetHighered from "./pages/getHighered";
 
 function App() {
   useEffect(() => {
@@ -22,6 +23,9 @@ function App() {
             </Route>
             <Route path="/gradaustralia">
               <GradAustralia />
+            </Route>
+            <Route path="/gethighered">
+              <GetHighered />
             </Route>
             <Route path="/">
               <Home />
