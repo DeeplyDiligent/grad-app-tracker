@@ -6,7 +6,8 @@ const Home = () => {
       <div>Select the website:</div>
       <Link to="/gradconnection">Gradconnection</Link><br/>
       <Link to="/gradaustralia">GradAustralia</Link><br/>
-      <Link to="/gethighered">GetHighered</Link>
+      <Link to="/gethighered">GetHighered</Link><br/>
+      <Link to="/iaeste">Iaeste</Link>
     </div>
   );
 };
