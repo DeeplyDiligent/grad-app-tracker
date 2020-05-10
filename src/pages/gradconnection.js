@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import { SketchPicker, GithubPicker } from "react-color";
 import Program from "../components/program";
+import {SaveAll} from "../components/saveAll";
+import {FetchFromFirebase} from "../components/fetchFromFirebase";
 const GradConnection = () => {
   const [listPrograms, setListPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -73,16 +75,17 @@ const GradConnection = () => {
           <Program dbKey={gradConnectionKey} key={program.id} program={program} />
         ))}
       </div>
-      <div
-        className="mt-4 underline cursor-pointer"
-        onClick={() => {
-          if (window.confirm("Are you sure?")) {
-            store.clearAll();
-            window.location.reload();
-          }
-        }}>
-        Clear
-      </div>
+        <div
+            className="mt-4 flex justify-around max-w-xl m-auto">
+            <div className="underline cursor-pointer" onClick={() => {
+                if (window.confirm("Are you sure?")) {
+                    store.clearAll();
+                    window.location.reload();
+                }
+            }}>Clear</div>
+            <SaveAll/>
+            <FetchFromFirebase/>
+        </div>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import { GithubPicker } from "react-color";
 import store from "store";
 import Moment from "react-moment";
+import {saveFirebase} from "../utils/data";
 
 const Program = ({ program, dbKey }) => {
   const [displayColorPicker, setDisplayColorPicker] = useState(true);
@@ -14,7 +15,7 @@ const Program = ({ program, dbKey }) => {
     observer = store.observe(
       `${dbKey}.${program.id}.color`,
       color => {
-        setColor(color ? color.hex : "#ffffff00");
+        setColor(color ? color : "#ffffff00");
       }
     );
     return () => {
@@ -23,11 +24,13 @@ const Program = ({ program, dbKey }) => {
   }, []);
 
   const storeColor = color => {
-    store.set(`${dbKey}.${program.id}.color`, color);
+    store.set(`${dbKey}.${program.id}.color`, color.hex);
+    saveFirebase()
   };
 
   const saveChecked = newState => {
     store.set(`${dbKey}.${program.id}.ticked`, newState);
+    saveFirebase()
   };
   const getChecked = () =>
     store.get(`${dbKey}.${program.id}.ticked`, false);
@@ -62,8 +65,8 @@ const Program = ({ program, dbKey }) => {
           `https://au.gradconnection.com/employers/${program.employerslug}/jobs/${program.slug}/`
         }
         className="flex-grow">
-        <div>{program.companyName}</div>
-        <div>{program.title}</div>
+        <div className="break-all">{program.companyName}</div>
+        <div className="break-all">{program.title}</div>
 
         {program.interval.start ? (
           <div>
@@ -79,7 +82,7 @@ const Program = ({ program, dbKey }) => {
         ) : (
           false
         )}
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap break-all">
           {program.locations.map(location => (
             <span className="mr-2" key={location}>
               {location}

@@ -15,12 +15,20 @@
 }
 
 .main {
-  min-height: 100vh;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  /*flex-direction: column;*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  font-size: calc(10px + 2vmin);
+}
+
+#root > div > div > div {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
 }
 
 .App-link {
@@ -37,7 +45,8 @@
 }
 
 .main-container {
-  width: 700px;
-  height: 70vh;
+  max-width: 700px;
   overflow: auto;
+  flex-grow: 1;
+  width: 100%;
 }

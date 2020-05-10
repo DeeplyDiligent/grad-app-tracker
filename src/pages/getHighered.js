@@ -1,11 +1,10 @@
-import React, { Component, useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import store from "store";
-import Moment from "react-moment";
-import { getHigheredKey } from "../utils/keys";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisH, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
-import { SketchPicker, GithubPicker } from "react-color";
+import {getHigheredKey} from "../utils/keys";
 import Program from "../components/program";
+import {SaveAll} from "../components/saveAll";
+import {FetchFromFirebase} from "../components/fetchFromFirebase";
+
 const GetHighered = () => {
   const [listPrograms, setListPrograms] = useState([]);
   const [currentPage, setPage] = useState(1);
@@ -151,14 +150,15 @@ const GetHighered = () => {
         ))}
       </div>
       <div
-        className="mt-4 underline cursor-pointer"
-        onClick={() => {
+          className="mt-4 flex justify-around max-w-xl m-auto">
+        <div className="underline cursor-pointer" onClick={() => {
           if (window.confirm("Are you sure?")) {
             store.clearAll();
             window.location.reload();
           }
-        }}>
-        Clear
+        }}>Clear</div>
+        <SaveAll/>
+        <FetchFromFirebase/>
       </div>
     </div>
   );
